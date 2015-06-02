@@ -10,6 +10,10 @@ angular.module('user').factory('UserService', function() {
         {
             id: '1002',
             name: 'Glenda Gonzalez'
+        },
+        {
+            id: '1003',
+            name: 'John Doe'
         }
     ];
 
