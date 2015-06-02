@@ -16,6 +16,8 @@ angular.module('document').directive('documentsTable', function(DocumentService,
             };
 
             scope.view = function(document) {
+                document.views++;
+
                 var viewModalInstance = $modal.open({
                     animation: true,
                     templateUrl: '/src/modules/document/views/view-modal.html',

@@ -1,8 +1,9 @@
 'use strict';
 
-angular.module('document').controller('ViewModalController', function ($scope, document, DocumentService, $modalInstance) {
+angular.module('document').controller('ViewModalController', function ($scope, document, DocumentService, $modalInstance, UserService) {
 
     $scope.document = document;
+    $scope.users    = UserService.getUsers();
 
     $scope.getDocumentIcon = function(document) {
         return DocumentService.getDocumentIcon(document);

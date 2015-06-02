@@ -2,12 +2,16 @@
     <h3 class="modal-title"><img data-ng-src="{{getDocumentIcon(document)}}" alt=""> {{document.name}}</h3>
 </div>
 <div class="modal-body">
-    <ul>
-        <li ng-repeat="item in items">
-            <a ng-click="selected.item = item">{{ item }}</a>
-        </li>
-    </ul>
-    Selected: <b>{{ selected.item }}</b>
+    <form>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Document Name" data-ng-model="document.name">
+        </div>
+        <div class="form-group">
+            <label for="owner">Owner</label>
+            <select class="form-control" id="owner" ng-options="user.name for user in users" data-ng-model="document.owner"></select>
+        </div>
+    </form>
 </div>
 <div class="modal-footer">
     <button class="btn btn-success" ng-click="update()">Update</button>

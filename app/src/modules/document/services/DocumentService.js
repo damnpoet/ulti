@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('document').factory('DocumentService', function(UserService) {
+angular.module('document').factory('DocumentService', function($rootScope, UserService) {
 
     var icons = [
         {
@@ -15,7 +15,7 @@ angular.module('document').factory('DocumentService', function(UserService) {
 
     var documents = [
         {
-            id:   '1001',
+            id:   1001,
             name: 'Manifest',
             owner: UserService.getById(1001),
             downloads: 80,
@@ -26,7 +26,7 @@ angular.module('document').factory('DocumentService', function(UserService) {
             sharedWith: []
         },
         {
-            id:   '1002',
+            id:   1002,
             name: 'Strategy',
             owner: UserService.getById(1001),
             downloads: 50,
@@ -37,7 +37,7 @@ angular.module('document').factory('DocumentService', function(UserService) {
             sharedWith: [UserService.getById(1002)]
         },
         {
-            id:   '1003',
+            id:   1003,
             name: 'Bug List',
             owner: UserService.getById(1001),
             downloads: 80,
@@ -48,7 +48,7 @@ angular.module('document').factory('DocumentService', function(UserService) {
             sharedWith: []
         },
         {
-            id:   '1004',
+            id:   1004,
             name: 'Collection',
             owner: UserService.getById(1002),
             downloads: 10,
@@ -71,7 +71,10 @@ angular.module('document').factory('DocumentService', function(UserService) {
         add: function(document) {
             if(isDocument(document)) {
                 documents.push(document);
+                $rootScope.$broadcast('document:created', document);
+                return true;
             }
+            return false;
         },
         getDocumentsByOwner: function(owner) {
             return _.filter(documents, function(document) {
@@ -105,6 +108,16 @@ angular.module('document').factory('DocumentService', function(UserService) {
             });
 
             return !_.isUndefined(icon) ? icon.icon : '/images/icons/archive_16x16.png';
+        },
+        getLastId: function() {
+            var lastId = 0;
+            _.each(documents, function(document){
+                if(document.id > lastId) {
+                    lastId = document.id;
+                }
+            });
+
+            return lastId;
         }
     }
 });

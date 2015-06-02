@@ -18,6 +18,7 @@ angular.module('ulti', [
     'ui.router',
     'ui.bootstrap',
     'toaster',
+    'ngFileUpload',
     'config',
     'common',
     'dashboard',
