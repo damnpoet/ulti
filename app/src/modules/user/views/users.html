@@ -1,0 +1,22 @@
+<h1 class="page-header">Users</h1>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th style="width: 1px;">#</th>
+            <th>Name</th>
+            <th>Documents</th>
+            <th>&nbsp;</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr data-ng-repeat="user in users | orderBy:'id'">
+            <td>{{user.id}}</td>
+            <td>{{user.name}}</td>
+            <td>{{countDocumentsForUser(user)}}</td>
+            <td><a href="#/users/{{user.id}}/documents">View Documents</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>

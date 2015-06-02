@@ -14,5 +14,10 @@ angular.module('user', []).config(function ($stateProvider) {
             url: 'users',
             templateUrl: 'src/modules/user/views/users.html',
             controller: 'UsersController'
+        })
+        .state('app.users-documents', {
+            url: 'users/:userId/documents',
+            templateUrl: 'src/modules/user/views/user-documents.html',
+            controller: 'UserDocumentsController'
         });
 });

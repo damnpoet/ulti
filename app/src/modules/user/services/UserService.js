@@ -4,8 +4,12 @@ angular.module('user').factory('UserService', function() {
 
     var users = [
         {
-            id: '1',
+            id: '1001',
             name: 'Richard Gonzalez'
+        },
+        {
+            id: '1002',
+            name: 'Glenda Gonzalez'
         }
     ];
 
@@ -21,6 +25,14 @@ angular.module('user').factory('UserService', function() {
             if(isUser(user)) {
                 users.push(user);
             }
+        },
+        getById: function(id) {
+            return _.find(users, function(user) {
+                return user.id == id;
+            });
+        },
+        getUsers: function() {
+            return users;
         }
     }
 });

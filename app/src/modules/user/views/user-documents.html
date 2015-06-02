@@ -1,0 +1,29 @@
+<h1 class="page-header">{{user.name}}</h1>
+
+
+
+<h2 class="sub-header">Documents</h2>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th style="width: 1px;">#</th>
+            <th>Name</th>
+            <th>Owner</th>
+            <th>Date</th>
+            <th>Views</th>
+            <th>&nbsp;</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr data-ng-repeat="document in documents | orderBy:'uploaded':true | limitTo:100">
+            <td>{{document.id}}</td>
+            <td><img data-ng-src="{{getDocumentIcon(document)}}" alt=""> {{document.name}}</td>
+            <td>{{document.owner.name}}</td>
+            <td>{{document.uploaded | date:config.date.format}}</td>
+            <td>{{document.views}}</td>
+            <td><a href="#/document/{{document.id}}">View</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>

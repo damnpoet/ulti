@@ -1,3 +1,6 @@
-/**
- * Created by richard on 6/2/15.
- */
+'use strict';
+
+angular.module('document').controller('DocumentsController', function ($scope) {
+
+
+});

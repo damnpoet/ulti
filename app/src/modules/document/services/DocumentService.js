@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('document').factory('DocumentService', function() {
+angular.module('document').factory('DocumentService', function(UserService) {
 
     var icons = [
         {
@@ -13,28 +13,35 @@ angular.module('document').factory('DocumentService', function() {
         {
             id:   '1001',
             name: 'Manifest',
-            owner: {
-                id: '1',
-                name: 'Richard Gonzalez'
-            },
+            owner: UserService.getById(1001),
             downloads: 80,
             views: 800,
             uploaded: new Date(),
             modified: new Date(),
-            type: 'application/pdf'
+            type: 'application/pdf',
+            sharedWith: []
         },
         {
             id:   '1002',
             name: 'Strategy',
-            owner: {
-                id: '1',
-                name: 'Richard Gonzalez'
-            },
+            owner: UserService.getById(1001),
             downloads: 50,
             views: 500,
             uploaded: new Date(),
             modified: new Date(),
-            type: 'application/pdf'
+            type: 'application/pdf',
+            sharedWith: [UserService.getById(1002)]
+        },
+        {
+            id:   '1003',
+            name: 'Collection',
+            owner: UserService.getById(1002),
+            downloads: 10,
+            views: 250,
+            uploaded: new Date(),
+            modified: new Date(),
+            type: 'application/application',
+            sharedWith: []
         }
     ];
 
@@ -53,7 +60,7 @@ angular.module('document').factory('DocumentService', function() {
         },
         getDocumentsByOwner: function(owner) {
             return _.filter(documents, function(document) {
-                return document.owner.id = owner.id
+                return document.owner.id == owner.id
             });
         },
         countDownloads: function() {
@@ -82,7 +89,7 @@ angular.module('document').factory('DocumentService', function() {
                 return document.type == icon.mime
             });
 
-            return !_.isUndefined(icon.icon) ? icon.icon : '/images/icons/archive_16x16.png';
+            return !_.isUndefined(icon) ? icon.icon : '/images/icons/archive_16x16.png';
         }
     }
 });
