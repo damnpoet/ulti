@@ -21,7 +21,7 @@ angular.module('document').directive('documentsTable', function($rootScope, Docu
                     document.views++;
                     $rootScope.$broadcast('document:viewed', document);
 
-                    $window.open("data:" + document.type + ";base64, " + document.base64, document.name);
+                    $window.open(document.base64, document.name);
                 }
                 else {
                     toaster.pop('error', 'Invalid Document', 'The document cannot be displayed because is invalid.');

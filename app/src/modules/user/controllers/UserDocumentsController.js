@@ -14,25 +14,29 @@ angular.module('user').controller('UserDocumentsController', function ($scope, U
         if (files && files.length) {
             var file = files[0];
 
-            var document = {
-                id: DocumentService.getLastId() + 1,
-                name: file.name,
-                owner: $scope.user,
-                views: 0,
-                uploaded: new Date(),
-                modified: new Date(),
-                type: file.type,
-                sharedWith: [],
-                locked: false
+            var fileReader = new FileReader();
+            fileReader.onload = function (e) {
+                var document = {
+                    id: DocumentService.getLastId() + 1,
+                    name: file.name,
+                    owner: $scope.user,
+                    views: 0,
+                    uploaded: new Date(),
+                    modified: new Date(),
+                    type: file.type,
+                    sharedWith: [],
+                    locked: false,
+                    base64: e.target.result
+                };
+
+                if(DocumentService.add(document)) {
+                    toaster.pop('success', 'Document Added', 'A new document was added');
+                }
+                else {
+                    toaster.pop('error', 'Invalid Document', 'The document was not created because is invalid');
+                }
             };
-
-            if(DocumentService.add(document)) {
-                toaster.pop('success', 'Document Added', 'A new document was added');
-            }
-            else {
-                toaster.pop('error', 'Invalid Document', 'The document was not created because is invalid');
-            }
-
+            fileReader.readAsDataURL(file);
         }
     };
 
