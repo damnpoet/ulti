@@ -48,8 +48,10 @@ angular.module('document').directive('documentsTable', function($rootScope, Docu
                 });
 
                 editModalInstance.result.then(function(updatedDocument) {
-                    updatedDocument.modified = new Date();
-                    document = updatedDocument;
+                    document.modified = new Date();
+                    document.name     = updatedDocument.name;
+                    document.owner    = updatedDocument.owner;
+
                     toaster.pop('success', 'Document Updated', 'The document was updated');
                 });
             };

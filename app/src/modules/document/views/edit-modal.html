@@ -9,7 +9,7 @@
         </div>
         <div class="form-group">
             <label for="owner">Owner</label>
-            <select class="form-control" id="owner" ng-options="user.name for user in users" data-ng-model="document.owner"></select>
+            <select class="form-control" id="owner" ng-options="user.name for user in users track by user.id" data-ng-model="document.owner"></select>
         </div>
     </form>
 </div>
