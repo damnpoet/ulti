@@ -65,7 +65,7 @@ angular.module('document').factory('DocumentService', function($rootScope, UserS
     ];
 
     var isDocument = function(document) {
-        return !(_.isUndefined(document.name) || _.isUndefined(document.owner) || _.isUndefined(document.downloads) || _.isUndefined(document.views));
+        return !(_.isUndefined(document.name) || _.isUndefined(document.owner) || _.isUndefined(document.views));
     };
 
     return {
