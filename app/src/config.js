@@ -11,5 +11,8 @@
 angular.module('config', []).constant('config', {
     application: {
         name: "Ulti"
+    },
+    date: {
+        format: 'medium'
     }
 });

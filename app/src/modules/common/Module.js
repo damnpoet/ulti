@@ -20,4 +20,6 @@ angular.module('common', []).config(function ($urlRouterProvider, $stateProvider
 
     $urlRouterProvider.otherwise('/dashboard');
 
+}).run(function($rootScope, config) {
+    $rootScope.config = config;
 });

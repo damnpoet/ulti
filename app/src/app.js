@@ -17,5 +17,7 @@ angular.module('ulti', [
     'ui.router',
     'config',
     'common',
-    'dashboard'
+    'dashboard',
+    'user',
+    'document'
 ]);

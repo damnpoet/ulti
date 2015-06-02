@@ -203,8 +203,8 @@ module.exports = function (grunt) {
                     }
                 }
             },
-            sass: {
-                src: ['<%= ulti.app %>/styles/{,*/}*.{scss,sass}'],
+            less: {
+                src: ['<%= ulti.app %>/styles/{,*/}*.{less}'],
                 ignorePath: /(\.\.\/){1,2}bower_components\//
             }
         },
