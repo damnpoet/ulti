@@ -38,7 +38,7 @@ module.exports = function(config) {
       'bower_components/ng-file-upload/ng-file-upload.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
-      "app/scripts/**/*.js",
+      "app/src/**/*.js",
       "test/mock/**/*.js",
       "test/spec/**/*.js"
     ],
