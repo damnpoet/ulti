@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('document').controller('ViewModalController', function ($scope, document, DocumentService, $modalInstance, UserService) {
+angular.module('document').controller('EditModalController', function ($scope, document, DocumentService, $modalInstance, UserService) {
 
     $scope.document = document;
     $scope.users    = UserService.getUsers();

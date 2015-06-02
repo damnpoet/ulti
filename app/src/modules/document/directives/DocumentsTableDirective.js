@@ -1,12 +1,13 @@
 'use strict';
 
-angular.module('document').directive('documentsTable', function($rootScope, DocumentService, $modal, toaster) {
+angular.module('document').directive('documentsTable', function($rootScope, DocumentService, $modal, toaster, $window) {
     return {
         restrict: 'E',
         require: "?ngModel",
         templateUrl: '/src/modules/document/views/documents-table-directive.html',
         scope: {
-            documents: '=ngModel'
+            documents: '=ngModel',
+            hideOwner: '=hideOwner'
         },
         replace: true,
         link: function postLink(scope) {
@@ -16,13 +17,28 @@ angular.module('document').directive('documentsTable', function($rootScope, Docu
             };
 
             scope.view = function(document) {
-                document.views++;
-                $rootScope.$broadcast('document:viewed', document);
+                if(!_.isEmpty(document.base64)) {
+                    document.views++;
+                    $rootScope.$broadcast('document:viewed', document);
 
-                var viewModalInstance = $modal.open({
+                    $window.open("data:" + document.type + ";base64, " + document.base64, document.name);
+                }
+                else {
+                    toaster.pop('error', 'Invalid Document', 'The document cannot be displayed because is invalid.');
+                }
+
+            };
+
+            scope.edit = function(document) {
+                if(document.locked) {
+                    toaster.pop('error', 'Document Locked.', 'This document is locked and can\'t be edited.');
+                    return;
+                }
+
+                var editModalInstance = $modal.open({
                     animation: true,
-                    templateUrl: '/src/modules/document/views/view-modal.html',
-                    controller: 'ViewModalController',
+                    templateUrl: '/src/modules/document/views/edit-modal.html',
+                    controller: 'EditModalController',
                     size: 'lg',
                     resolve: {
                         document: function () {
@@ -31,7 +47,7 @@ angular.module('document').directive('documentsTable', function($rootScope, Docu
                     }
                 });
 
-                viewModalInstance.result.then(function(updatedDocument) {
+                editModalInstance.result.then(function(updatedDocument) {
                     updatedDocument.modified = new Date();
                     document = updatedDocument;
                     toaster.pop('success', 'Document Updated', 'The document was updated');

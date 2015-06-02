@@ -3,6 +3,10 @@ body {
     padding-top:50px;
 }
 
+a{
+    cursor: pointer;
+}
+
 /*
  * Global add-ons
  */
@@ -98,7 +102,13 @@ body {
     }
 }
 
-.table-with-buttons > tbody > tr > td:last-child {
-    white-space: nowrap;
-    width: 1px;
+.table-with-buttons {
+    > tbody > tr > td:last-child {
+        white-space: nowrap;
+        width: 1px;
+    }
+
+    ul {
+        margin-bottom: 0;
+    }
 }

@@ -4,26 +4,31 @@
         <tr>
             <th style="width: 1px;">#</th>
             <th>Name</th>
-            <th>Owner</th>
-            <th>Created</th>
-            <th>Modified</th>
-            <th>Downloads</th>
-            <th>Views</th>
+            <th class="col-md-2" ng-if="!hideOwner">Owner</th>
+            <th class="col-md-1">Created</th>
+            <th class="col-md-1">Modified</th>
+            <th class="col-md-1">Downloads</th>
+            <th class="col-md-1">Views</th>
+            <th class="col-md-1">Status</th>
             <th>&nbsp;</th>
         </tr>
         </thead>
         <tbody>
         <tr data-ng-repeat="document in documents | orderBy:'uploaded':true | limitTo:100">
             <td>{{document.id}}</td>
-            <td><img data-ng-src="{{getDocumentIcon(document)}}" alt=""> {{document.name}}</td>
-            <td>{{document.owner.name}}</td>
+            <td><img data-ng-src="{{getDocumentIcon(document)}}" alt=""> <a ng-click="view(document)">{{document.name}}</a></td>
+            <td ng-if="!hideOwner">{{document.owner.name}}</td>
             <td>{{document.uploaded | date:config.date.format}}</td>
             <td>{{document.modified | date:config.date.format}}</td>
             <td>{{document.downloads}}</td>
             <td>{{document.views}}</td>
             <td>
+                <span ng-if="!document.locked" class="label label-success">Open</span>
+                <span ng-if="document.locked" class="label label-danger">Locked</span>
+            </td>
+            <td>
                 <ul class="list-inline">
-                    <li><a class="btn btn-default btn-sm" ng-click="view(document)">View</a></li>
+                    <li><a class="btn btn-default btn-sm" ng-click="edit(document)">Edit</a></li>
                     <li><a class="btn btn-default btn-sm" ng-click="share(document)">Share</a></li>
                     <li><a class="btn btn-danger btn-sm" ng-click="delete(document)">Delete</a></li>
                 </ul>

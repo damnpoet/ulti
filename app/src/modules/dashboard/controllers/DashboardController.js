@@ -5,7 +5,7 @@ angular.module('dashboard').controller('DashboardController', function ($scope, 
     $scope.count = {
         users:     UserService.count(),
         documents: DocumentService.count(),
-        downloads: DocumentService.countDownloads(),
+        locked:    DocumentService.countLocked(),
         views:     DocumentService.countViews()
     };
 

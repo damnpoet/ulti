@@ -18,12 +18,12 @@ angular.module('user').controller('UserDocumentsController', function ($scope, U
                 id: DocumentService.getLastId() + 1,
                 name: file.name,
                 owner: $scope.user,
-                downloads: 0,
                 views: 0,
                 uploaded: new Date(),
                 modified: new Date(),
                 type: file.type,
-                sharedWith: []
+                sharedWith: [],
+                locked: false
             };
 
             if(DocumentService.add(document)) {
