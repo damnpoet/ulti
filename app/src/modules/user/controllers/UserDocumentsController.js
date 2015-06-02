@@ -40,4 +40,8 @@ angular.module('user').controller('UserDocumentsController', function ($scope, U
         $scope.documents = DocumentService.getDocumentsByOwner($scope.user);
     });
 
+    $scope.$on('document:deleted', function() {
+        $scope.documents = DocumentService.getDocumentsByOwner($scope.user);
+    });
+
 });

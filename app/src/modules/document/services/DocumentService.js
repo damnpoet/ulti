@@ -118,6 +118,13 @@ angular.module('document').factory('DocumentService', function($rootScope, UserS
             });
 
             return lastId;
+        },
+        remove: function(document) {
+            var index = documents.indexOf(document);
+            if(index > -1) {
+                documents.splice(index, 1);
+                $rootScope.$broadcast('document:deleted', document);
+            }
         }
     }
 });

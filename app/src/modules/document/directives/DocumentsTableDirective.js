@@ -53,6 +53,24 @@ angular.module('document').directive('documentsTable', function(DocumentService,
                     toaster.pop('success', 'Document Shared', 'The document was shared with the selected users');
                 });
             };
+
+            scope.delete = function(document) {
+                var shareModalInstance = $modal.open({
+                    animation: true,
+                    templateUrl: '/src/modules/document/views/delete-modal.html',
+                    controller: 'DeleteModalController',
+                    resolve: {
+                        document: function () {
+                            return document;
+                        }
+                    }
+                });
+
+                shareModalInstance.result.then(function() {
+                    DocumentService.remove(document);
+                    toaster.pop('success', 'Document Removed', 'The document was removed');
+                });
+            };
         }
     }
 });
