@@ -230,9 +230,7 @@ module.exports = function (grunt) {
             dist: {
                 src: [
                     '<%= ulti.dist %>/scripts/{,*/}*.js',
-                    '<%= ulti.dist %>/styles/{,*/}*.css',
-                    '<%= ulti.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
-                    '<%= ulti.dist %>/styles/fonts/*'
+                    '<%= ulti.dist %>/styles/{,*/}*.css'
                 ]
             }
         },
@@ -317,24 +315,6 @@ module.exports = function (grunt) {
             }
         },
 
-        htmlmin: {
-            dist: {
-                options: {
-                    collapseWhitespace: true,
-                    conservativeCollapse: true,
-                    collapseBooleanAttributes: true,
-                    removeCommentsFromCDATA: true,
-                    removeOptionalTags: true
-                },
-                files: [{
-                    expand: true,
-                    cwd: '<%= ulti.dist %>',
-                    src: ['*.html', 'views/{,*/}*.html'],
-                    dest: '<%= ulti.dist %>'
-                }]
-            }
-        },
-
         // ng-annotate tries to make the code safe for minification automatically
         // by using the Angular long form for dependency injection.
         ngAnnotate: {
@@ -345,13 +325,6 @@ module.exports = function (grunt) {
                     src: '*.js',
                     dest: '.tmp/concat/scripts'
                 }]
-            }
-        },
-
-        // Replace Google CDN references
-        cdnify: {
-            dist: {
-                html: ['<%= ulti.dist %>/*.html']
             }
         },
 
@@ -367,9 +340,9 @@ module.exports = function (grunt) {
                         '*.{ico,png,txt}',
                         '.htaccess',
                         '*.html',
-                        'views/{,*/}*.html',
                         'images/{,*/}*.{webp}',
-                        'styles/fonts/{,*/}*.*'
+                        'styles/fonts/{,*/}*.*',
+                        'src/modules/*/views/{,*/}*.html',
                     ]
                 }, {
                     expand: true,
@@ -454,12 +427,10 @@ module.exports = function (grunt) {
         'concat',
         'ngAnnotate',
         'copy:dist',
-        'cdnify',
         'cssmin',
         'uglify',
         'filerev',
-        'usemin',
-        'htmlmin'
+        'usemin'
     ]);
 
     grunt.registerTask('default', [

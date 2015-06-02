@@ -10,7 +10,6 @@
  */
 angular.module('common', []).config(function ($urlRouterProvider, $stateProvider) {
 
-    $urlRouterProvider.when('', '/dashboard');
     $urlRouterProvider.when('/', '/dashboard');
 
     $stateProvider.state('app', {
