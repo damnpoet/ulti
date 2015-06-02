@@ -7,7 +7,6 @@
             <th class="col-md-2" ng-if="!hideOwner">Owner</th>
             <th class="col-md-1">Created</th>
             <th class="col-md-1">Modified</th>
-            <th class="col-md-1">Downloads</th>
             <th class="col-md-1">Views</th>
             <th class="col-md-1">Status</th>
             <th>&nbsp;</th>
@@ -20,7 +19,6 @@
             <td ng-if="!hideOwner">{{document.owner.name}}</td>
             <td>{{document.uploaded | date:config.date.format}}</td>
             <td>{{document.modified | date:config.date.format}}</td>
-            <td>{{document.downloads}}</td>
             <td>{{document.views}}</td>
             <td>
                 <span ng-if="!document.locked" class="label label-success">Open</span>
