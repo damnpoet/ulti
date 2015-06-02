@@ -44,7 +44,7 @@ module.exports = function (grunt) {
                 tasks: ['newer:jshint:test', 'karma']
             },
             recess: {
-                files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
+                files: ['<%= yeoman.app %>/styles/{,*/}*.{less}'],
                 tasks: ['recess:server', 'autoprefixer']
             },
             gruntfile: {
