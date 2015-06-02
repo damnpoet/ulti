@@ -6,6 +6,10 @@ angular.module('document').factory('DocumentService', function(UserService) {
         {
             mime: 'application/pdf',
             icon: '/images/icons/pdf_16x16.png'
+        },
+        {
+            mime: 'application/vnd.ms-word.document',
+            icon: '/images/icons/word_16x16.png'
         }
     ];
 
@@ -34,6 +38,17 @@ angular.module('document').factory('DocumentService', function(UserService) {
         },
         {
             id:   '1003',
+            name: 'Bug List',
+            owner: UserService.getById(1001),
+            downloads: 80,
+            views: 800,
+            uploaded: new Date(),
+            modified: new Date(),
+            type: 'application/vnd.ms-word.document',
+            sharedWith: []
+        },
+        {
+            id:   '1004',
             name: 'Collection',
             owner: UserService.getById(1002),
             downloads: 10,

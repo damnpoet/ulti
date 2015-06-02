@@ -11,8 +11,4 @@ angular.module('dashboard').controller('DashboardController', function ($scope, 
 
     $scope.documents = DocumentService.getDocuments();
 
-    $scope.getDocumentIcon = function(document) {
-        return DocumentService.getDocumentIcon(document);
-    }
-
 });
