@@ -5,7 +5,9 @@
             <th style="width: 1px;">#</th>
             <th>Name</th>
             <th>Owner</th>
-            <th>Date</th>
+            <th>Created</th>
+            <th>Modified</th>
+            <th>Downloads</th>
             <th>Views</th>
             <th>&nbsp;</th>
         </tr>
@@ -16,6 +18,8 @@
             <td><img data-ng-src="{{getDocumentIcon(document)}}" alt=""> {{document.name}}</td>
             <td>{{document.owner.name}}</td>
             <td>{{document.uploaded | date:config.date.format}}</td>
+            <td>{{document.modified | date:config.date.format}}</td>
+            <td>{{document.downloads}}</td>
             <td>{{document.views}}</td>
             <td>
                 <ul class="list-inline">

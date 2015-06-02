@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('user').controller('UserDocumentsController', function ($scope, UserService, DocumentService, $stateParams, $modal) {
+angular.module('user').controller('UserDocumentsController', function ($scope, UserService, DocumentService, $stateParams, $modal, toaster) {
 
     $scope.user      = UserService.getById($stateParams.userId);
     $scope.documents = DocumentService.getDocumentsByOwner($scope.user);
@@ -9,24 +9,6 @@ angular.module('user').controller('UserDocumentsController', function ($scope, U
     $scope.$watch('myFile', function () {
         $scope.upload($scope.myFile);
     });
-
-    $scope.add = function() {
-        var addModalInstance = $modal.open({
-            animation: true,
-            templateUrl: '/src/modules/document/views/add-modal.html',
-            controller: 'AddModalController',
-            size: 'lg'
-        });
-
-        addModalInstance.result.then(function(document) {
-            if(DocumentService.add(document)) {
-                toaster.pop('success', 'Document Create', 'The document was created.');
-            }
-            else {
-                toaster.pop('error', 'Invalid Document', 'The document was not created.');
-            }
-        });
-    };
 
     $scope.upload = function (files) {
         if (files && files.length) {
