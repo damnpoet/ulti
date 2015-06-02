@@ -10,7 +10,7 @@
  */
 angular.module('config', []).constant('config', {
     application: {
-        name: "Ulti"
+        name: "Ulti - Document Management System"
     },
     date: {
         format: 'medium'

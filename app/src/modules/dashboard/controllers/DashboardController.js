@@ -11,4 +11,8 @@ angular.module('dashboard').controller('DashboardController', function ($scope, 
 
     $scope.documents = DocumentService.getDocuments();
 
+    $scope.$on('document:viewed', function() {
+        $scope.count.views = DocumentService.countViews();
+    });
+
 });

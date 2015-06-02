@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('document').directive('documentsTable', function(DocumentService, $modal, toaster) {
+angular.module('document').directive('documentsTable', function($rootScope, DocumentService, $modal, toaster) {
     return {
         restrict: 'E',
         require: "?ngModel",
@@ -17,6 +17,7 @@ angular.module('document').directive('documentsTable', function(DocumentService,
 
             scope.view = function(document) {
                 document.views++;
+                $rootScope.$broadcast('document:viewed', document);
 
                 var viewModalInstance = $modal.open({
                     animation: true,
@@ -31,6 +32,7 @@ angular.module('document').directive('documentsTable', function(DocumentService,
                 });
 
                 viewModalInstance.result.then(function(updatedDocument) {
+                    updatedDocument.modified = new Date();
                     document = updatedDocument;
                     toaster.pop('success', 'Document Updated', 'The document was updated');
                 });
