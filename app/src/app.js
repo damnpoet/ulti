@@ -24,4 +24,8 @@ angular.module('ulti', [
     'dashboard',
     'user',
     'document'
-]);
+]).run(function($rootScope) {
+    $rootScope.$on('$stateChangeSuccess', function(event, toState) {
+        $rootScope.state = toState.name;
+    });
+});
